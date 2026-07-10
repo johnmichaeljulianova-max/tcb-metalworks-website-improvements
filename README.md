@@ -6,9 +6,9 @@ the **zoo & animal enclosure** niche alongside the core fabrication services.
 
 ## 🔗 View the live preview
 
-**➡️ https://REPLACE-WITH-YOUR-LIVE-LINK**
+### ▶️ **[Open the live site](https://johnmichaeljulianova-max.github.io/tcb-metalworks-website-improvements/)**
 
-*(Once GitHub Pages is turned on, paste the link here so it's easy to click.)*
+`https://johnmichaeljulianova-max.github.io/tcb-metalworks-website-improvements/`
 
 You can browse the whole site right in the browser — home page, services, projects, the zoo
 enclosures section, and the articles/blog.
