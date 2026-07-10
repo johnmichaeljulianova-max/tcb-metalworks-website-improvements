@@ -1,0 +1,15 @@
+# Tooling / editor config (not part of the website)
+.claude/
+
+# Internal working notes — kept local, not shared
+PROJECT-NOTES.md
+
+# Reference only: offline copy of the current live WordPress site (38 MB)
+tcb-metalworks-site/
+
+# OS / editor junk
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
+node_modules/

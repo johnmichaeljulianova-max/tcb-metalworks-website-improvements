@@ -1,0 +1,6 @@
+# robots.txt for TCB Metal Works
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tcbmetalworks.com/sitemap.xml
