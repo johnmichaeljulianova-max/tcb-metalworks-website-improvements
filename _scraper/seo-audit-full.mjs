@@ -1,7 +1,7 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 const ROOT = path.resolve('tcb-website');
-const pages = ['index.html','zoo-enclosures.html','what-is-zoo-caging.html','zoo-squeeze-cage.html','keeper-doors-for-zoo-enclosures.html','shift-gates-for-zoo-enclosures.html','zoo-holding-areas.html','zoo-enrichment-boxes.html','zoo-mesh-systems.html','structural-steel-framing-zoo-enclosures.html','how-to-design-a-safe-zoo-enclosure.html','choosing-the-right-materials-for-zoo-enclosures.html','common-mistakes-in-zoo-enclosure-design.html','how-to-choose-a-zoo-enclosure-manufacturer.html','zoo-enclosure-manufacturing-process.html','articles.html','services.html','resources.html','about.html','contact.html'];
+const pages = ['index.html','zoo-enclosures.html','what-is-zoo-caging.html','zoo-squeeze-cage.html','keeper-doors-for-zoo-enclosures.html','shift-gates-for-zoo-enclosures.html','zoo-holding-areas.html','zoo-enrichment-boxes.html','zoo-mesh-systems.html','structural-steel-framing-zoo-enclosures.html','how-to-design-a-safe-zoo-enclosure.html','choosing-the-right-materials-for-zoo-enclosures.html','common-mistakes-in-zoo-enclosure-design.html','how-to-choose-a-zoo-enclosure-manufacturer.html','zoo-enclosure-manufacturing-process.html','custom-tow-truck-wheel-lift.html','structural-steel-fabrication-project.html','articles.html','services.html','resources.html','about.html','contact.html'];
 
 const strip = h => h.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ');
 const dec = s => s.replace(/&amp;/g,'&').replace(/&mdash;/g,'—').replace(/&#\d+;/g,'');
