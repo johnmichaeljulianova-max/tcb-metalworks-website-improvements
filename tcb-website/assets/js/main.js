@@ -124,10 +124,29 @@
       slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
       dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
     };
-    const restart = () => { if (reduce) return; clearInterval(timer); timer = setInterval(() => go(idx + 1), 6000); };
+    const restart = () => { clearInterval(timer); timer = setInterval(() => go(idx + 1), 4000); };
+    // Lock the track to the tallest testimonial so it never grows/shrinks as it cycles.
+    // Re-measured on resize (and after fonts load) so it stays correct at every screen size.
+    const sizeTrack = () => {
+      let max = 0;
+      slides.forEach(s => {
+        const prev = s.style.cssText;
+        s.style.cssText = 'position:absolute;top:0;left:0;right:0;height:auto;opacity:0;visibility:hidden;transform:none;display:block;pointer-events:none';
+        max = Math.max(max, s.offsetHeight);
+        s.style.cssText = prev;
+      });
+      if (max) track.style.minHeight = Math.ceil(max) + 'px';
+    };
+    sizeTrack();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeTrack);
+    let rsz; window.addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(sizeTrack, 200); }, { passive: true });
     go(0); restart();
-    track.addEventListener('mouseenter', () => clearInterval(timer));
-    track.addEventListener('mouseleave', restart);
+    // pause while the visitor is reading (hover or keyboard focus anywhere in the block)
+    const quotes = track.closest('.quotes') || track;
+    quotes.addEventListener('mouseenter', () => clearInterval(timer));
+    quotes.addEventListener('mouseleave', restart);
+    quotes.addEventListener('focusin', () => clearInterval(timer));
+    quotes.addEventListener('focusout', restart);
   }
 
   /* ---------- Contact form ---------- */

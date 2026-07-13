@@ -390,9 +390,11 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .quote__by { margin-top: var(--s-3); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .85rem; color: var(--ember); }
 .quote__stars { display: flex; justify-content: center; gap: .2rem; margin-top: var(--s-3); color: var(--ember); }
 .quote__stars svg { width: 18px; height: 18px; }
-.quotes__track { position: relative; }
-.quotes__slide { position: absolute; inset: 0; opacity: 0; transform: translateY(12px); transition: opacity .6s var(--ease), transform .6s var(--ease); pointer-events: none; }
-.quotes__slide.is-active { position: relative; opacity: 1; transform: none; pointer-events: auto; }
+/* All slides stacked in one grid cell → the track is always as tall as the LONGEST
+   testimonial and never resizes as quotes rotate. */
+.quotes__track { display: grid; }
+.quotes__slide { grid-area: 1 / 1; opacity: 0; transform: translateY(12px); transition: opacity .6s var(--ease), transform .6s var(--ease); pointer-events: none; }
+.quotes__slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
 .quotes__dots { display: flex; justify-content: center; gap: .6rem; margin-top: var(--s-5); }
 .quotes__dots button { width: 9px; height: 9px; border-radius: 50%; background: var(--hair-dark); transition: background .3s var(--ease), width .3s var(--ease); }
 .quotes__dots button.is-active { background: var(--ember); width: 26px; border-radius: 5px; }
