@@ -1,7 +1,7 @@
 import { readFile, access } from 'node:fs/promises';
 import path from 'node:path';
 const ROOT = path.resolve('../tcb-website');
-const pages = ['index.html','zoo-enclosures.html','what-is-zoo-caging.html','zoo-squeeze-cage.html','keeper-doors-for-zoo-enclosures.html','shift-gates-for-zoo-enclosures.html','zoo-holding-areas.html','zoo-enrichment-boxes.html','zoo-mesh-systems.html','structural-steel-framing-zoo-enclosures.html','how-to-design-a-safe-zoo-enclosure.html','choosing-the-right-materials-for-zoo-enclosures.html','common-mistakes-in-zoo-enclosure-design.html','how-to-choose-a-zoo-enclosure-manufacturer.html','zoo-enclosure-manufacturing-process.html','custom-tow-truck-wheel-lift.html','structural-steel-fabrication-project.html','denver-zoo-australia-exhibit.html','university-of-miami-holding-pens.html','projects.html','privacy-policy.html','articles.html','services.html','resources.html','about.html','contact.html'];
+const pages = ['index.html','about-tcb-metal-works/index.html','articles/index.html','choosing-the-right-materials-for-zoo-enclosures/index.html','common-mistakes-in-zoo-enclosure-design/index.html','contact/index.html','projects/custom-tow-truck-wheel-lift/index.html','projects/denver-zoo-australia-exhibit/index.html','how-to-choose-a-zoo-enclosure-manufacturer/index.html','how-to-design-a-safe-zoo-enclosure/index.html','keeper-doors-for-zoo-enclosures/index.html','privacy-policy/index.html','projects/index.html','resources/index.html','metal-fabrication-services/index.html','shift-gates-for-zoo-enclosures/index.html','structural-steel-beams-guide/index.html','projects/structural-steel-fabrication-project/index.html','structural-steel-framing-zoo-enclosures/index.html','projects/university-of-miami-holding-pens/index.html','what-is-zoo-caging/index.html','zoo-enclosure-manufacturing-process/index.html','zoo-enclosures/index.html','zoo-enrichment-boxes/index.html','zoo-holding-areas/index.html','zoo-mesh-systems/index.html','zoo-squeeze-cage/index.html'];
 let problems = 0;
 const exists = async p => { try { await access(p); return true; } catch { return false; } };
 
@@ -12,9 +12,10 @@ for (const page of pages) {
   for (const m of html.matchAll(/(?<![-\w])(?:href|src)\s*=\s*"([^"]+)"/gi)) refs.add(m[1]);
   for (const r of refs) {
     if (/^(https?:|tel:|mailto:|#|data:)/.test(r)) continue;           // external / anchors
-    const clean = r.split('#')[0].split('?')[0];
+    let clean = r.split('#')[0].split('?')[0];
     if (!clean) continue;
-    const target = path.join(ROOT, clean);
+    if (clean.endsWith('/')) clean += 'index.html';                    // pretty dir → index.html
+    const target = path.join(ROOT, path.dirname(page), clean);         // resolve from page's folder
     if (!(await exists(target))) { console.log(`  [${page}] MISSING → ${r}`); problems++; }
   }
   // structural checks
